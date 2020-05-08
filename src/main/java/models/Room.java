@@ -9,17 +9,22 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.CheckBox;
 import models.Equipment;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Room extends Section {
+public class Room extends Section implements EntityClass {
     @Access(AccessType.FIELD)
-    private List<Equipment> equipments = FXCollections.observableArrayList();
+    @ManyToMany
+    @JoinTable(name = "equipment_room", joinColumns = @JoinColumn(name = "ROOM_ID"),
+            inverseJoinColumns = @JoinColumn(name = "EQUIPMENT_ID"))
+    protected List<Equipment> equipments = FXCollections.observableArrayList();
+
+    @Access(AccessType.FIELD)
+    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
+    private List<Person> persons = FXCollections.observableArrayList();
+    private ObjectProperty<Floor> floor = new SimpleObjectProperty<>();
     private CheckBox selected = new CheckBox();
 
     public Room(){
@@ -54,6 +59,30 @@ public class Room extends Section {
     @Transient
     public ObservableList<Equipment> getEquipmentsO(){return (ObservableList<Equipment>) equipments;}
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "floor_id")
+    public Floor getFloor() {
+        return floor.get();
+    }
+
+    @Transient
+    public ObjectProperty<Floor> floorProperty() {
+        return floor;
+    }
+
+    public void setFloor(Floor floor) {
+        this.floor.set(floor);
+    }
+
+    @Transient
+    public List<Person> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(List<Person> persons) {
+        this.persons = persons;
+    }
+
     @Transient
     public CheckBox getSelected() {
         return selected;
@@ -61,6 +90,15 @@ public class Room extends Section {
 
     public void setSelected(CheckBox selected) {
         this.selected = selected;
+    }
+
+    @Override
+    public boolean equals(final Object other){
+        if (this == other)
+            return true;
+        if (!(other instanceof Room))
+            return false;
+        return this.id == ((Room) other).getId();
     }
 
     @Transient

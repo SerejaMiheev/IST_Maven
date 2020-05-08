@@ -1,13 +1,14 @@
 package gw;
 
 import exceptions.EntityNotFound;
+import models.EntityClass;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SimpleGateway<T> implements Gateway<T>{
+public class SimpleGateway<T extends EntityClass> implements Gateway<T>{
 
     static long id = 0;
 

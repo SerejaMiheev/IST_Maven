@@ -2,22 +2,22 @@ package models;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import javax.persistence.*;
 import java.util.List;
 
-//TODO:
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Access(AccessType.PROPERTY)
-public class Section {
-    private long id;
+public abstract class Section implements EntityClass {
+    protected long id;
     protected IntegerProperty number = new SimpleIntegerProperty();
 
     @Access(AccessType.FIELD)
+    @OneToMany
+    @JoinColumn(name = "section_id")
     protected List<Camera> cameras = FXCollections.observableArrayList();
     protected IntegerProperty countCamera = new SimpleIntegerProperty();
 
@@ -66,7 +66,7 @@ public class Section {
     }
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId(){
         return id;
     }

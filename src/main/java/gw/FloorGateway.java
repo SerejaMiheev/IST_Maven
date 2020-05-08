@@ -2,8 +2,7 @@ package gw;
 
 import models.Floor;
 
-/*public class FloorGateway extends SimpleGateway<Floor> {
+public class FloorGateway extends SimpleHibernateGateway<Floor> {
     public FloorGateway(){
-        this.insert(new Floor(1));
     }
-}*/
+}

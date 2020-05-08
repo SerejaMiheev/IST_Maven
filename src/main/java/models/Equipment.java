@@ -1,13 +1,16 @@
 package models;
 
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.CheckBox;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Equipment {
+public class Equipment implements EntityClass {
     private long id;
     private IntegerProperty count = new SimpleIntegerProperty();
     private CheckBox selected = new CheckBox();
@@ -27,6 +30,8 @@ public class Equipment {
         this.type.set(type);
     }
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "toe_id", nullable = false)
     public TOE getTypeOfEquipment(){
         return type.get();
     }
@@ -64,7 +69,7 @@ public class Equipment {
     }
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId(){
         return id;
     }
@@ -77,4 +82,14 @@ public class Equipment {
     public String toString(){
         return getTypeOfEquipment().toString()+", кол-во: "+getCountOfEquipment();
     }
+
+    @Override
+    public boolean equals(final Object other){
+        if (this == other)
+            return true;
+        if (!(other instanceof Equipment))
+            return false;
+        return this.id == ((Equipment) other).getId();
+    }
+
 }

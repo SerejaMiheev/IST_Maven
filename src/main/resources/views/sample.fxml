@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="303.0" prefWidth="214.0" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Controller">
+   <children>
+      <Button mnemonicParsing="false" onAction="#clickEvent" prefHeight="33.0" text="Сгенерировать событие" />
+      <Button mnemonicParsing="false" onAction="#clickType" prefHeight="33.0" text="Тип оборудования">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets left="15.0" />
+         </VBox.margin></Button>
+      <Button mnemonicParsing="false" onAction="#clickEquipment" prefHeight="33.0" text="Оборудование">
+         <VBox.margin>
+            <Insets left="26.0" />
+         </VBox.margin></Button>
+      <Button mnemonicParsing="false" onAction="#clickRoom" prefHeight="33.0" prefWidth="92.0" text="Комната">
+         <VBox.margin>
+            <Insets left="30.0" />
+         </VBox.margin></Button>
+      <Button mnemonicParsing="false" onAction="#ClickFloor" prefHeight="33.0" prefWidth="92.0" text="Этаж">
+         <VBox.margin>
+            <Insets left="30.0" />
+         </VBox.margin></Button>
+      <Button mnemonicParsing="false" onAction="#clickCamera" prefHeight="33.0" prefWidth="92.0" text="Камера">
+         <VBox.margin>
+            <Insets left="30.0" />
+         </VBox.margin></Button>
+      <Button mnemonicParsing="false" onAction="#ClickPerson" prefHeight="33.0" prefWidth="92.0" text="Человек">
+         <VBox.margin>
+            <Insets left="30.0" />
+         </VBox.margin></Button>
+   </children>
+   <padding>
+      <Insets left="30.0" top="5.0" />
+   </padding>
+</VBox>

@@ -1,14 +1,8 @@
 package gw;
 
-import models.Equipment;
+import models.TOE;
 
-/*public class TypeGateway extends SimpleGateway<Equipment.TypeOfEquipments> {
+public class TypeGateway extends SimpleHibernateGateway<TOE> {
     public TypeGateway() {
-        this.insert(new Equipment.TypeOfEquipments("ПК"));
-        this.insert(new Equipment.TypeOfEquipments("Телефон"));
-        this.insert(new Equipment.TypeOfEquipments("Кулер"));
-        this.insert(new Equipment.TypeOfEquipments("Стол"));
-        this.insert(new Equipment.TypeOfEquipments("Стул"));
     }
 }
-*/

@@ -4,17 +4,16 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Floor extends Section {
+public class Floor extends Section implements EntityClass {
     @Access(AccessType.FIELD)
-    private List<Room> roomonfloor = FXCollections.observableArrayList();
+    @OneToMany
+    @JoinColumn(name = "floor_id")
+    private List<Room> rooms = FXCollections.observableArrayList();
     private IntegerProperty countRoom = new SimpleIntegerProperty();
 
     public Floor(){}
@@ -23,42 +22,42 @@ public class Floor extends Section {
         this.number.set(number);
     }
 
-    public Floor(List<Room> roomonfloor, int number){
-        this.roomonfloor = roomonfloor;
+    public Floor(List<Room> rooms, int number){
+        this.rooms = rooms;
         this.number.set(number);
-        countRoom.set(this.roomonfloor.size());
+        countRoom.set(this.rooms.size());
         countCamera.set(this.cameras.size());
     }
 
-    public Floor(List<Room> roomonfloor){
-        this.roomonfloor = roomonfloor;
-        countRoom.set(this.roomonfloor.size());
+    public Floor(List<Room> rooms){
+        this.rooms = rooms;
+        countRoom.set(this.rooms.size());
         countCamera.set(this.cameras.size());
     }
 
-    public Floor(Room roomonfloor){
-        this.roomonfloor.add(roomonfloor);
-        countRoom.set(this.roomonfloor.size());
+    public Floor(Room rooms){
+        this.rooms.add(rooms);
+        countRoom.set(this.rooms.size());
         countCamera.set(this.cameras.size());
     }
 
-    public void setRoomonfloor(ObservableList<Room> roomonfloor) {
-        this.roomonfloor = roomonfloor;
-        countRoom.set(this.roomonfloor.size());
+    public void setRoomonfloor(ObservableList<Room> rooms) {
+        this.rooms = rooms;
+        countRoom.set(this.rooms.size());
     }
 
-    public void setRooms(List<Room> roomonfloor){
-        this.roomonfloor = roomonfloor;
-        countRoom.set(this.roomonfloor.size());
+    public void setRooms(List<Room> rooms){
+        this.rooms = rooms;
+        countRoom.set(this.rooms.size());
     }
 
-    public void addRoom(Room roomonfloor){
-        this.roomonfloor.add(roomonfloor);
-        countRoom.set(this.roomonfloor.size());
+    public void addRoom(Room rooms){
+        this.rooms.add(rooms);
+        countRoom.set(this.rooms.size());
     }
 
     public int getCountRoom() {
-        countRoom.set(this.roomonfloor.size());
+        countRoom.set(this.rooms.size());
         return countRoom.get();
     }
 
@@ -68,17 +67,18 @@ public class Floor extends Section {
 
     @Transient
     public IntegerProperty countRoomProperty() {
-        countRoom.set(this.roomonfloor.size());
+        countRoom.set(this.rooms.size());
         return countRoom;
     }
 
     @Transient
     public ObservableList<Room> getRoomonfloor(){
-        return (ObservableList<Room>) roomonfloor;
+        return (ObservableList<Room>) rooms;
     }
 
+    @Transient
     public List<Room> getRooms(){
-        return roomonfloor;
+        return rooms;
     }
 
     @Override
@@ -86,3 +86,4 @@ public class Floor extends Section {
         return "Номер этажа: "+getNumber()+"\nКомнаты на этаже: "+getRoomonfloor().toString();
     }
 }
+//@OneToMany(mappedBy = "floor", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="365.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DetFloorController">
+   <children>
+      <HBox prefHeight="28.0" prefWidth="600.0" spacing="5.0">
+         <children>
+            <Label fx:id="floorLabel" text="Этаж:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets top="3.0" />
+               </padding>
+            </Label>
+            <Label fx:id="numberLabel">
+               <padding>
+                  <Insets top="3.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Label prefHeight="17.0" prefWidth="64.0" text="Комнаты:">
+         <VBox.margin>
+            <Insets right="300.0" />
+         </VBox.margin>
+      </Label>
+      <ListView fx:id="roomListView" prefHeight="123.0" prefWidth="365.0" />
+      <Label prefHeight="17.0" prefWidth="63.0" text="Камеры:">
+         <VBox.margin>
+            <Insets right="300.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <ListView fx:id="camerasListView" layoutX="10.0" layoutY="38.0" prefHeight="123.0" prefWidth="365.0">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </ListView>
+      <Button cancelButton="true" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#Cancel" prefHeight="35.0" prefWidth="95.0" text="Закрыть">
+         <VBox.margin>
+            <Insets bottom="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</VBox>

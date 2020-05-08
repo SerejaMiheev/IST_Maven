@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="361.0" prefWidth="391.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FloorController">
+   <children>
+      <HBox prefHeight="54.0" prefWidth="600.0" spacing="10.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#Add" prefHeight="34.0" prefWidth="83.0" text="Добавить" />
+            <Button mnemonicParsing="false" onAction="#Edit" prefHeight="34.0" prefWidth="106.0" text="Редактировать" />
+            <Button mnemonicParsing="false" onAction="#Del" prefHeight="34.0" prefWidth="75.0" text="Удалить" />
+            <Button mnemonicParsing="false" onAction="#View" prefHeight="34.0" text="Просмотр" />
+         </children>
+         <padding>
+            <Insets left="10.0" top="6.0" />
+         </padding>
+      </HBox>
+      <TableView fx:id="floorTable" prefHeight="260.0" prefWidth="441.0">
+        <columns>
+          <TableColumn fx:id="floorColumn" prefWidth="132.0" resizable="false" text="Этаж" />
+          <TableColumn fx:id="countFloor" prefWidth="123.0" resizable="false" text="Кол-во комнат" />
+            <TableColumn fx:id="countCamera" prefWidth="133.0" resizable="false" text="Кол-во камер" />
+        </columns>
+      </TableView>
+      <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="381.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#cancel" text="Закрыть">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets right="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

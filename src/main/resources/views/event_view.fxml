@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="349.0" prefWidth="547.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EventController">
+   <children>
+      <HBox prefHeight="46.0" prefWidth="600.0" spacing="10.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#add" text="Создать">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#del" text="Удалить">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <TableView fx:id="eventTable" prefHeight="264.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="dateColumn" prefWidth="203.0" resizable="false" text="Дата" />
+          <TableColumn fx:id="infColumn" prefWidth="340.0" resizable="false" text="Информация" />
+        </columns>
+      </TableView>
+      <HBox alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="298.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#cancel" text="Закрыть">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>

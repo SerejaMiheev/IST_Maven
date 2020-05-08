@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Camera {
+public class Camera implements EntityClass {
     private long id;
     private IntegerProperty numbercam = new SimpleIntegerProperty();
     private StringProperty locrecord = new SimpleStringProperty();
@@ -42,6 +42,8 @@ public class Camera {
         this.numbercam.set(numbercam);
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "section_id")
     public Section getSection() {
         return section.get();
     }
@@ -79,7 +81,7 @@ public class Camera {
     }
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId(){
         return id;
     }
@@ -92,4 +94,14 @@ public class Camera {
     public String toString() {
         return "Номер камеры: " + getNumbercam() + ". Путь записи: " + getLocrecord();
 }
+
+    @Override
+    public boolean equals(final Object other){
+        if (this == other)
+            return true;
+        if (!(other instanceof Camera))
+            return false;
+        return this.id == ((Camera) other).getId();
+    }
+
 }

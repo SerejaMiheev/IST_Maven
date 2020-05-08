@@ -6,8 +6,9 @@ import javax.persistence.*;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Person {
+public class Person implements EntityClass {
     private long id;
+    private LongProperty idProperty = new SimpleLongProperty();
     private StringProperty fio = new SimpleStringProperty();
     private ObjectProperty<Room> room = new SimpleObjectProperty<>();
 
@@ -31,6 +32,8 @@ public class Person {
         this.fio.set(fio);
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_id")
     public Room getRoom() {
         return room.get();
     }
@@ -54,14 +57,24 @@ public class Person {
         return fio.get();
     }
 
+    @Transient
+    public long getIdProperty() {
+        return idProperty.get();
+    }
+
+    public LongProperty idPropertyProperty() {
+        return idProperty;
+    }
+
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId(){
         return id;
     }
 
     public void setId(long id){
         this.id = id;
+        this.idProperty.set(id);
     }
 
     @Override

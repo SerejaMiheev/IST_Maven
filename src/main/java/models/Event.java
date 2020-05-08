@@ -10,10 +10,9 @@ import java.util.Date;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Event {
+public class Event implements EntityClass {
     private long id;
     private ObjectProperty<Date> date = new SimpleObjectProperty<>();
-    //TODO: List
     private ObjectProperty<Camera> camera = new SimpleObjectProperty<>();
     private ObjectProperty<Person> person = new SimpleObjectProperty<>();
     private StringProperty record = new SimpleStringProperty();
@@ -37,6 +36,8 @@ public class Event {
             this.record.set(record);
         }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "camera_id", nullable = false)
     public Camera getCamera() {
             return camera.get();
         }
@@ -46,7 +47,7 @@ public class Event {
         return date;
     }
 
-    //TODO: @org.hibernate.annotations.CreationTimestamp
+    @org.hibernate.annotations.CreationTimestamp
     private void setDate(Date date) {
         this.date.set(date);
     }
@@ -83,6 +84,8 @@ public class Event {
         return record;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id")
     public Person getPerson() {
             return person.get();
         }
@@ -93,7 +96,7 @@ public class Event {
     }
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId(){
         return id;
     }
@@ -104,8 +107,8 @@ public class Event {
 
     @Override
     public String toString() {
-        if(!person.get().getFio().isBlank()) {
-            return "Человек: " + getPerson().toString() + getCamera().toString();
+        if(person.get() != null) {
+            return "Человек: " + getPerson().toString() + "\n" + getCamera().toString();
         }
         else {
             return getCamera().toString();

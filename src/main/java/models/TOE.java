@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class TOE {
+public class TOE implements EntityClass {
     private long id;
     private StringProperty typeofequipment = new SimpleStringProperty();
 
@@ -35,7 +35,7 @@ public class TOE {
     }
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId(){
             return id;
         }

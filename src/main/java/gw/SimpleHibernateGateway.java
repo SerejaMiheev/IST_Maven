@@ -1,13 +1,14 @@
 package gw;
 
 import exceptions.EntityNotFound;
+import models.EntityClass;
 import utils.EntityManagerFactoryUtil;
 
 import javax.persistence.EntityManager;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-public class SimpleHibernateGateway<T> implements Gateway<T> {
+public class SimpleHibernateGateway<T extends EntityClass> implements Gateway<T> {
     private EntityManager em = EntityManagerFactoryUtil.getEntityManager();
     private Class<T> persistentClass;
 
